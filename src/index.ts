@@ -30,6 +30,7 @@ function scan(code: string): SymbolTableEntry[] {
 function scanPos(partial: string): SymbolTableEntry | void {
   return (
     scanLiteral(partial) ?? // First call to avoid scanning inside a literal
+    scanDirective(partial) ??
     scanConstant(partial) ??
     scanOperator(partial) ??
     scanPunctuators(partial) ??
@@ -59,6 +60,10 @@ function scanKeyword(partial: string): SymbolTableEntry | void {
 
 function scanIdentifier(partial: string): SymbolTableEntry | void {
   return scanByRegex(partial, /[a-zA-Z_][a-zA-Z0-9_]*/y, TokenType.ID);
+}
+
+function scanDirective(partial: string): SymbolTableEntry | void {
+  return scanByRegex(partial, /^#[^\n]+/my, TokenType.DIR);
 }
 
 function scanPunctuators(partial: string): SymbolTableEntry | void {

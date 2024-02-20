@@ -14,4 +14,4 @@ int main() {
     printf("The sum of the array elements is: %d\\n", sum);
     
     return 0;
-}`;
+}`; // 59 tokens

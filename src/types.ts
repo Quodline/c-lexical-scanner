@@ -11,4 +11,5 @@ export enum TokenType {
   LIT = 'literal',
   OPR = 'operator',
   PUN = 'punctuator',
+  DIR = 'directive',
 }

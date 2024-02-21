@@ -17,8 +17,8 @@ function scan(code: string): SymbolTableEntry[] {
     const entry: SymbolTableEntry | void = scanPos(code.slice(pos));
 
     if (entry) {
-      pos += entry.position;
       symbol_table.push({...entry, position: pos});
+      pos += entry.position;
     } else {
       pos++;
     }

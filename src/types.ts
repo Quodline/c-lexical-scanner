@@ -1,4 +1,4 @@
-export interface SymbolTableEntry {
+export interface Token {
   type: TokenType;
   position: number;
   value: string;

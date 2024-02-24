@@ -1,4 +1,17 @@
-import {SymbolTableEntry, TokenType} from './types';
+import * as fs from 'fs';
+import {Token, TokenType} from './types';
+
+export function readFileContents(filePath: string): Promise<string> {
+  return new Promise((resolve, reject) => {
+    fs.readFile(filePath, 'utf8', (err, data) => {
+      if (err) {
+        reject(err);
+        return;
+      }
+      resolve(data);
+    });
+  });
+}
 
 export function removeComments(code: string): string {
   // Regular expression to match both single-line and multi-line comments
@@ -11,7 +24,7 @@ export function scanByRegex(
   str: string,
   regex: RegExp,
   type: TokenType
-): SymbolTableEntry | void {
+): Token | void {
   const matched = regex.exec(str);
 
   if (matched) {
